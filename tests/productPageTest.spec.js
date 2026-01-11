@@ -2,18 +2,21 @@ import { test } from '@playwright/test';
 import LoginPage from '../pageObjects/LoginPage';
 import ProductsPage from '../pageObjects/ProductsPage';
 import CartPage from '../pageObjects/CartPage';
+import CheckoutPage from '../pageObjects/CheckoutPage';
 
 const baseURL = 'https://www.saucedemo.com/';
 const userName = 'standard_user';
 const password = 'secret_sauce';
 
-let loginPage, productPage, cartPage;
+let loginPage, productPage, cartPage, checkoutPage;
 
-test.describe('Login Page Tests', () => {
+test.describe('Product Page Tests', () => {
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     productPage = new ProductsPage(page);
     cartPage = new CartPage(page);
+    checkoutPage = new CheckoutPage(page);
+
     await page.goto(baseURL);
     await loginPage.fillLoginForm(userName, password);
 
@@ -23,4 +26,19 @@ test.describe('Login Page Tests', () => {
     await productPage.navigateToCart();
     await cartPage.verifyItemInCartByName('Sauce Labs Backpack');
   });
+  test('Test user can add products to cart and complete the checkout process', async ({ page }) => {
+    const items = ['Sauce Labs Backpack',  'Sauce Labs Bolt T-Shirt', 'Sauce Labs Fleece Jacket'];
+    const name = 'John';
+    const lastName = 'Doe';
+    const postalCode = '12345';
+
+    for (const item of items) {
+      await productPage.addProductToCartByName(item);
+    }
+    await productPage.navigateToCart();
+    await cartPage.clickCheckoutBtn();
+    await checkoutPage.fillCheckoutInformation(name, lastName, postalCode);
+    await checkoutPage.finishCheckout();
+    await checkoutPage.verifyOrderCompletion();
+  })
 })
