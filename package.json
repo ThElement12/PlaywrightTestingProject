@@ -1,0 +1,23 @@
+{
+  "name": "playwrighttestingproject",
+  "version": "1.0.0",
+  "description": "Playwright project as part of my job interview",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThElement12/PlaywrightTestingProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ThElement12/PlaywrightTestingProject/issues"
+  },
+  "homepage": "https://github.com/ThElement12/PlaywrightTestingProject#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.6"
+  }
+}
