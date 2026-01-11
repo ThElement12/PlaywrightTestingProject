@@ -18,6 +18,10 @@ test.describe('Login Page Tests', () => {
     await loginPage.fillLoginForm(userName, password);
     await productPage.verifyProductsPageTitle();
   });
+  test('Test login with invalid credentials', async ({ page }) => {
+    await loginPage.verifyErrorMessage(userName, 'wrong_password');
+    await loginPage.verifyErrorMessage('wrong_user', password);
+  });
 })
 
 
