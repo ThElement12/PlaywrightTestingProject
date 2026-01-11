@@ -41,4 +41,21 @@ test.describe('Product Page Tests', () => {
     await checkoutPage.finishCheckout();
     await checkoutPage.verifyOrderCompletion();
   })
+  test('Verify "Your Information" fields are mandatory', async ({ page }) => {
+    const name = 'John';
+    const lastName = 'Doe';
+    const postalCode = '12345';
+    await productPage.addProductToCartByName('Sauce Labs Backpack');
+    await productPage.navigateToCart();
+    await cartPage.clickCheckoutBtn();
+
+    await checkoutPage.fillCheckoutInformation('', lastName, postalCode);
+    await checkoutPage.verifyErrorMessage('Error: First Name is required');
+
+    await checkoutPage.fillCheckoutInformation(name, '', postalCode);
+    await checkoutPage.verifyErrorMessage('Error: Last Name is required');
+
+    await checkoutPage.fillCheckoutInformation(name, lastName, '');
+    await checkoutPage.verifyErrorMessage('Error: Postal Code is required');
+  });
 })

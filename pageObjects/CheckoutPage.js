@@ -11,6 +11,7 @@ export default class CheckoutPage {
     this.finishBtn = page.locator('#finish');
     this.confirmationHeader = page.locator('[data-test="complete-header"]');
     this.confirmationText = page.locator('[data-test="complete-text"]');
+    this.errorMessage = page.locator('[data-test="error"]');
   }
   async fillCheckoutInformation(firstName, lastName, postalCode){
     await expect(this.checkoutTitle).toHaveText('Checkout: Your Information');
@@ -27,5 +28,9 @@ export default class CheckoutPage {
     await expect(this.checkoutTitle).toHaveText('Checkout: Complete!');
     await expect(this.confirmationHeader).toHaveText('Thank you for your order!');
     await expect(this.confirmationText).toHaveText('Your order has been dispatched, and will arrive just as fast as the pony can get there!');
+  }
+  async verifyErrorMessage(expectedMessage){
+    await expect(this.errorMessage).toBeVisible();
+    await expect(this.errorMessage).toHaveText(expectedMessage);
   }
 }
