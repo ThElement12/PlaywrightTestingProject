@@ -1,7 +1,7 @@
 {
   "name": "playwrighttestingproject",
   "version": "1.0.0",
-  "description": "Playwright project as part of my job interview",
+  "description": "Basic Playwright Testing Project",
   "main": "index.js",
   "scripts": {},
   "repository": {
