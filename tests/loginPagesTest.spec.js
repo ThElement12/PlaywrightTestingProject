@@ -18,8 +18,14 @@ test.describe('Login Page Tests', () => {
     await loginPage.fillLoginForm(userName, password);
     await productPage.verifyProductsPageTitle();
   });
-  test('Test login with invalid credentials', async ({ page }) => {
-    await loginPage.verifyErrorMessage(userName, 'wrong_password');
-    await loginPage.verifyErrorMessage('wrong_user', password);
+  [{ username: userName, password: '', expectedError: 'Epic sadface: Password is required' },
+  { username: '', password: password, expectedError: 'Epic sadface: Username is required' },
+  { username: '', password: '', expectedError: 'Epic sadface: Username is required' },
+  { username: 'wrong_user', password: password, expectedError: 'Epic sadface: Username and password do not match any user in this service' },
+  { username: userName, password: 'wrong_password', expectedError: 'Epic sadface: Username and password do not match any user in this service' }].forEach(({ username, password, expectedError }) => {
+    test(`Test login with invalid credentials: username='${username}', password='${password}'`, async ({ page }) => {
+      await loginPage.fillLoginForm(username, password);
+      await loginPage.verifyErrorMessage(expectedError);
+    });
   });
 })

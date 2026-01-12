@@ -14,9 +14,8 @@ export default class LoginPage{
     await this.passwordInput.fill(password);
     await this.loginBtn.click();
   }
-  async verifyErrorMessage(userName, password){
-    await this.fillLoginForm(userName, password);
+  async verifyErrorMessage(expectedError){
     await expect(this.errorMsg).toBeVisible();
-    await expect(this.errorMsg).toHaveText('Epic sadface: Username and password do not match any user in this service');  
+    await expect(this.errorMsg).toHaveText(expectedError);  
   }
 }
