@@ -4,9 +4,9 @@ import ProductsPage from '../pageObjects/ProductsPage';
 import CartPage from '../pageObjects/CartPage';
 import CheckoutPage from '../pageObjects/CheckoutPage';
 
-const baseURL = 'https://www.saucedemo.com/';
-const userName = 'standard_user';
-const password = 'secret_sauce';
+const baseURL = process.env.BASE_URL;
+const userName = process.env.USERNAME;
+const password = process.env.PASSWORD;
 
 let loginPage, productPage, cartPage, checkoutPage;
 
