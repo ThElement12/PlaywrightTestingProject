@@ -27,6 +27,8 @@ npm install
 npx playwright install
 ```
 
+3. Add `.env` file in the root folder:
+
 ---
 
 ## Running the tests
