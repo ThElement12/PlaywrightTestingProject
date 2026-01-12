@@ -5,8 +5,8 @@ import CartPage from '../pageObjects/CartPage';
 import CheckoutPage from '../pageObjects/CheckoutPage';
 
 const baseURL = process.env.BASE_URL;
-const userName = process.env.USERNAME;
-const password = process.env.PASSWORD;
+const userName = process.env.PW_USERNAME;
+const password = process.env.PW_PASSWORD;
 
 let loginPage, productPage, cartPage, checkoutPage;
 

@@ -2,8 +2,8 @@ import { test } from '@playwright/test';
 import LoginPage from '../pageObjects/LoginPage';
 import ProductsPage from '../pageObjects/ProductsPage';
 
-const userName = process.env.USERNAME;
-const password = process.env.PASSWORD;
+const userName = process.env.PW_USERNAME;
+const password = process.env.PW_PASSWORD;
 const baseURL = process.env.BASE_URL;
 
 let loginPage, productPage;
